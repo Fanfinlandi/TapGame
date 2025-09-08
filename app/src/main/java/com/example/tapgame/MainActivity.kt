@@ -31,6 +31,7 @@ import kotlin.random.Random
 
 class MainActivity : AppCompatActivity() {
 
+    private lateinit var rootLayout: ConstraintLayout
 
     private lateinit var tapButton: Button
 
@@ -120,6 +121,8 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        rootLayout = findViewById(R.id.main) // Twój ConstraintLayout w activity_main.xml
+        applySeasonTheme()
 
         MobileAds.initialize(this) {}
         mAdView = findViewById(R.id.adView)
@@ -517,6 +520,38 @@ class MainActivity : AppCompatActivity() {
         itemLayout.addView(textLayout)
         parent.addView(itemLayout)
     }
+    private fun applySeasonTheme() {
+        val season = getSeason()
+        when (season) {
+            "wiosna" -> {
+               /* rootLayout.setBackgroundResource(R.drawable.bg_wiosna)
+                tapButton.setBackgroundResource(R.drawable.btn_wiosna)*/
+            }
+            "lato" -> {
+              /*  rootLayout.setBackgroundResource(R.drawable.bg_lato)
+                tapButton.setBackgroundResource(R.drawable.btn_lato)*/
+            }
+            "jesień" -> {
+               /* rootLayout.setBackgroundResource(R.drawable.bg_jesien)*/
+               /* tapButton.setBackgroundResource(R.drawable.btn_jesien)*/
+            }
+            "zima" -> {
+             /*   rootLayout.setBackgroundResource(R.drawable.bg_zima)
+                tapButton.setBackgroundResource(R.drawable.btn_zima)*/
+            }
+        }
+    }
+
+    private fun getSeason(): String {
+        val month = java.util.Calendar.getInstance().get(java.util.Calendar.MONTH) + 1
+        return when (month) {
+            in 3..5 -> "wiosna"
+            in 6..8 -> "lato"
+            in 9..11 -> "jesień"
+            else -> "zima"
+        }
+    }
+
 }
 
 private fun ConstraintLayout.LayoutParams.removeRule(centerInParent: Int) {}

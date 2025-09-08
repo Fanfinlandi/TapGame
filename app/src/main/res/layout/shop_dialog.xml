@@ -54,6 +54,8 @@
                 android:backgroundTint="@android:color/holo_green_light"
                 android:text="🎁"
                 android:textSize="30sp"/>
+
+
         </LinearLayout>
 
         <TextView
@@ -62,6 +64,7 @@
             android:text="Cost: 100 Coins"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="10dp"/>
+
 
         <Button
             android:id="@+id/closeButton"
